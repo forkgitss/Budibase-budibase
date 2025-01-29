@@ -114,15 +114,15 @@ export class ComponentStore extends BudiStore<ComponentState> {
 
     // Fetch definitions and filter out custom component definitions so we
     // can flag them
-    const components: any = await API.fetchComponentLibDefinitions(appId)
-    const customComponents = Object.keys(components).filter(key =>
+    const components = await API.fetchComponentLibDefinitions(appId)
+    const customComponents = Object.keys(components.definitions).filter(key =>
       key.startsWith("plugin/")
     )
 
     // Update store
     this.update(state => ({
       ...state,
-      components,
+      components: components.definitions,
       customComponents,
     }))
 

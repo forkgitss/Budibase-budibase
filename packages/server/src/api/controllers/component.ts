@@ -1,6 +1,8 @@
 import { DocumentType } from "../../db/utils"
 import {
   App,
+  ClientFeatures,
+  ComponentDefinition,
   FetchComponentDefinitionResponse,
   Plugin,
   UserCtx,
@@ -24,7 +26,7 @@ export async function fetchAppComponentDefinitions(
         }
       })
     )
-    const definitions: { [key: string]: any } = {}
+    const definitions: Record<string, ComponentDefinition> = {}
     for (let { manifest, library } of componentManifests) {
       for (let key of Object.keys(manifest)) {
         // These keys are not components, and should not be preprended with the `@budibase/` prefix
@@ -58,7 +60,14 @@ export async function fetchAppComponentDefinitions(
         }
       })
 
-    ctx.body = definitions
+    const { features, typeSupportPresets, ...componentDefinitions } =
+      definitions
+
+    ctx.body = {
+      definitions: componentDefinitions,
+      features: features as unknown as ClientFeatures,
+      typeSupportPresets,
+    }
   } catch (err) {
     console.error(`component-definitions=failed`, err)
   }
