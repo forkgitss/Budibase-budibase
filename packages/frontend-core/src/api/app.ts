@@ -8,9 +8,9 @@ import {
   DeleteAppResponse,
   DuplicateAppRequest,
   DuplicateAppResponse,
-  FetchAppDefinitionResponse,
   FetchAppPackageResponse,
   FetchAppsResponse,
+  FetchComponentDefinitionResponse,
   FetchDeploymentResponse,
   GetDiagnosticsResponse,
   ImportToUpdateAppRequest,
@@ -55,7 +55,7 @@ export interface AppEndpoints {
   getApps: () => Promise<FetchAppsResponse>
   fetchComponentLibDefinitions: (
     appId: string
-  ) => Promise<FetchAppDefinitionResponse>
+  ) => Promise<FetchComponentDefinitionResponse>
   setRevertableVersion: (
     appId: string,
     revertableVersion: string

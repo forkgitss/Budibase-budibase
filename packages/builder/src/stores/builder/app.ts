@@ -5,22 +5,9 @@ import {
   AppFeatures,
   AppIcon,
   AutomationSettings,
+  ClientFeatures,
   Plugin,
 } from "@budibase/types"
-
-interface ClientFeatures {
-  spectrumThemes: boolean
-  intelligentLoading: boolean
-  deviceAwareness: boolean
-  state: boolean
-  rowSelection: boolean
-  customThemes: boolean
-  devicePreview: boolean
-  messagePassing: boolean
-  continueIfAction: boolean
-  showNotificationAction: boolean
-  sidePanel: boolean
-}
 
 interface TypeSupportPresets {
   [key: string]: any
