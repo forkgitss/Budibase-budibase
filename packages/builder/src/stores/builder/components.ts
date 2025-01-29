@@ -129,8 +129,6 @@ export class ComponentStore extends BudiStore<ComponentState> {
     // Sync client features to app store
     appStore.syncClientFeatures(components.features)
     appStore.syncClientTypeSupportPresets(components?.typeSupportPresets ?? {})
-
-    return components
   }
 
   /**
