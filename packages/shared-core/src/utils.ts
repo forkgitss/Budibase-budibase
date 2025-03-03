@@ -155,6 +155,9 @@ export function processSearchFilters(
     return undefined
   }
   const { allOr, onEmptyFilter, filters } = splitFiltersArray(filterArray)
+  if (!filters.length) {
+    return undefined
+  }
   return {
     logicalOperator: UILogicalOperator.ALL,
     onEmptyFilter: onEmptyFilter || EmptyFilterOption.RETURN_ALL,
