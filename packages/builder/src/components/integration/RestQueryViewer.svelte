@@ -1,6 +1,12 @@
 <script>
   import { goto, params } from "@roxi/routify"
-  import { datasources, flags, integrations, queries } from "@/stores/builder"
+  import {
+    datasources,
+    flags,
+    integrations,
+    oauth2,
+    queries,
+  } from "@/stores/builder"
   import { environment } from "@/stores/portal"
   import {
     Banner,
@@ -266,13 +272,23 @@
   }
 
   const buildAuthConfigs = datasource => {
+    const configs = []
     if (datasource?.config?.authConfigs) {
-      return datasource.config.authConfigs.map(c => ({
-        label: c.name,
-        value: c._id,
-      }))
+      configs.push(
+        ...datasource.config.authConfigs.map(c => ({
+          label: c.name,
+          value: c._id,
+        }))
+      )
     }
-    return []
+    for (const config of $oauth2) {
+      configs.push({
+        label: `oAuth2 - ${config.name}`,
+        value: config.name,
+      })
+    }
+
+    return configs
   }
 
   const schemaMenuItems = [
